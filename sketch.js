@@ -1,3 +1,61 @@
+// examples on different types of    data in javascript
+//string: 
+var string = "abhyuadaya";
+ console.log(string);
+
+//number
+var number = 5;
+console.log(number);
+
+//boolean
+var boolean = true;
+console.log(boolean);
+
+//undefined
+var undefined1;
+console.log(undefined1);
+
+//null
+var null1 = null ;
+console.log(null1);
+
+
+//array for names
+var array1 = ["abhyuadaya","boolean","undefined"];
+console.log(array1);
+console.log(array1[0])
+array1.pop();
+console.log(array1);
+
+
+//array for different types of data
+var array2 = ["abhyuadaya",5, null, , true, ]
+array2.push(3);
+console.log(array2);
+
+
+//array storing array
+var array3 = [[5,6,7,8,9,0],["abhi","gupta"],[true,false]];
+console.log(array3);
+console.log(array3[0][2]);
+
+console.log(array3[1][1]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const Engine = Matter.Engine;
 const World= Matter.World;
 const Bodies = Matter.Bodies;
@@ -7,7 +65,7 @@ var engine, world;
 var box1, pig1,pig3;
 var backgroundImg,platform;
 var bird, slingshot;
-
+var gameState = "onSling";
 
 function preload() {
     backgroundImg = loadImage("sprites/bg.png");
@@ -69,16 +127,20 @@ function draw(){
 }
 
 function mouseDragged(){
+    if(gameState !== "launch")
+    {
     Matter.Body.setPosition(bird.body, {x: mouseX , y: mouseY});
+    }
 }
 
 
 function mouseReleased(){
     slingshot.fly();
+    gameState = "launch";
 }
 
 function keyPressed(){
     if(keyCode === 32){
-        slingshot.attach(bird.body);
+     //   slingshot.attach(bird.body);
     }
 }
